@@ -18,6 +18,17 @@ struct TheLabel: View {
             Label("Amazing", systemImage: "star.fill")
             
             
+            //MARK: - Button With Label
+            Button(role: .destructive) {
+              //stop()
+            } label: {
+              Label("Stop", systemImage: "xmark.circle")
+                .font(.title3)
+                .padding(.horizontal)
+            }
+            .buttonStyle(.borderedProminent)
+
+            
             //MARK: - For More control over 'title' and 'icon'
             Label {
                 Text("Spectacular")
@@ -37,20 +48,7 @@ struct TheLabel: View {
                     .frame(width: 40, height: 40)
                     .clipShape(Circle())
             }
-            //Adding CustomLabelStyle from struct below
-            Label{
-                Text("RAGE")
-            } icon: {
-                Image("dragon")
-                    .resizable()
-                    .frame(width: 40, height: 40)
-                    .clipShape(Circle())
-            }
-            .labelStyle(CustomLabelStyle(iconColor: .green, titlecolor: .red, backgroundColor: Color("greyish"), opaque: true))
             
-            //or as..
-            Label("PLAY", systemImage: "backward")
-                .labelStyle(CustomLabelStyle(iconColor: .blue, titlecolor: .purple, backgroundColor: .teal, opaque: false))
             
             // Use Button for icon. Can create stepper effect
             
@@ -75,45 +73,53 @@ struct TheLabel: View {
             }
             .frame(width: 100, height: 100)
             .background(.indigo.opacity(0.3))
-            
-            
-            //MARK: - Labels in List
-            List{
-                Text("Rules of Coding")
-                    .font(.largeTitle)
-                HStack{
-                    Image(systemName: "person.3")
-                    Divider()
-                    Text("Build Community")
-                }
-                
-                HStack{
-                    Image(systemName: "square.and.pencil")
-                    Divider()
-                    Text("Create and Create")
-                }
-                //Notice not aligned. Use Label instead of HStack
+        }
+        
+    }
+}
+
+
+//MARK: - Labels in List
+struct LabelsInList: View{
+    var body: some View{
+        // Fake Label
+        List{
+            Text("Rules of Coding")
+                .font(.largeTitle)
+            HStack{
+                Image(systemName: "person.3")
+                Divider()
+                Text("Build Community")
             }
-            List{
-                Text("Rules of Coding")
-                    .font(.largeTitle)
-                Label{
-                    Text("Build Community")
-                } icon: {
-                    Image(systemName: "person.3")
-                        .foregroundColor(.primary)
-                }
-                Label{
-                    Text("Create and Create")
-                } icon: {
-                    Image(systemName: "square.and.pencil")
-                        .foregroundColor(.primary)
+            
+            HStack{
+                Image(systemName: "square.and.pencil")
+                Divider()
+                Text("Create and Create")
+            }
+            //Notice not aligned. Use "Label" instead of "HStack"
+        }
+        
+        
+        List{
+            Text("Rules of Coding")
+                .font(.largeTitle)
+            Label{
+                Text("Build Community")
+            } icon: {
+                Image(systemName: "person.3")
+                    .foregroundColor(.primary)
+            }
+            Label{
+                Text("Create and Create")
+            } icon: {
+                Image(systemName: "square.and.pencil")
+                    .foregroundColor(.primary)
             }
         }
     }
-    
 }
-}
+
 
 //MARK: - Creating Custom LabelStyle
 // Protocol requires 'makeBody' func.
@@ -139,14 +145,57 @@ struct CustomLabelStyle: LabelStyle {
                 .foregroundColor(iconColor)
             //Flipping the icon Vertically: 'y axis'
                 .rotation3DEffect(.degrees(180), axis: (x: 0.0, y: 1.0, z: 0.0))
-                       
-               
+            
+            
         }
         .padding(10)
         .background(RoundedRectangle(cornerRadius: 10).fill(backgroundColor.opacity(opaque ? 1 : 0.2)))
     }
 }
 
+
+//MARK: - Another Custom Style
+struct BlueDashBorderLabel: LabelStyle {
+    
+    func makeBody(configuration: Configuration) -> some View {
+        Label(configuration)
+            .padding()
+            .overlay(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .stroke(.blue, style: StrokeStyle(lineWidth: 2, dash: [4,4]))
+            )
+    }
+}
+
+
+//MARK: - CustomLabels
+struct CustomLabels: View {
+    var body: some View{
+        VStack{
+        Label("Rain", systemImage: "cloud.rain")
+            .labelStyle(BlueDashBorderLabel())
+            .foregroundColor(.blue)
+        
+        Label{
+            Text("RAGE")
+        } icon: {
+            //image from Assets
+            Image("dragon")
+                .resizable()
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
+        }
+        .labelStyle(CustomLabelStyle(iconColor: .green, titlecolor: .red, backgroundColor: Color("greyish"), opaque: true))
+        
+        //or as..
+        Label("PLAY", systemImage: "backward")
+            .labelStyle(CustomLabelStyle(iconColor: .blue, titlecolor: .purple, backgroundColor: .teal, opaque: false))
+    }
+    }
+}
+
+
+//MARK: - Label Plug and Play
 struct DifLabel: View {
     struct Person {
         let fullName: String
@@ -173,9 +222,18 @@ struct DifLabel: View {
     }
 }
 
+
 struct TheLabel_Previews: PreviewProvider {
     static var previews: some View {
-//        TheLabel()
-        DifLabel()
+//        LabelsInList()
+        ScrollView{
+            VStack{
+                
+                TheLabel()
+                CustomLabels()
+                DifLabel()
+                    
+            }
+        }
     }
 }

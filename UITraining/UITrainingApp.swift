@@ -11,7 +11,7 @@ import SwiftUI
 struct UITrainingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LabelsInList()
         }
     }
 }
