@@ -11,7 +11,10 @@ import SwiftUI
 struct UITrainingApp: App {
     var body: some Scene {
         WindowGroup {
-            LabelsInList()
+            MenuOne()
+//            TheLabel()
+//            CustomLabels()
+//            DifLabel()()
         }
     }
 }
