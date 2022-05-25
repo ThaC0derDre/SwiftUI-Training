@@ -107,7 +107,8 @@ struct LabelsInList: View{
             Label{
                 Text("Build Community")
             } icon: {
-                Text("H-209")
+                Image(systemName: "person.3")
+                    .foregroundColor(.primary)
             }
             Label{
                 Text("Create and Create")
