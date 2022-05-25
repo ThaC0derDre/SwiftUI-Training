@@ -122,10 +122,41 @@ struct MenuTwo: View {
             
             ZStack{
                 // Menu
-                Color.primary.opacity(showMenu ? 0.5 : 0.0)
+                Color.primary.opacity(showMenu ? 0.1 : 0.0)
+                
+                VStack{
+                    // Menu Content View
+                    
+                        
+                    Menu("CALENDER"){
+                        Label("Add Date", systemImage: "calendar")
+                        Label("Check Schedule", systemImage: "schedule")
+                    }
+                        .padding()
+                    Menu("CHROME"){}
+                        .padding()
+                    Menu("GOOGLE"){}
+                        .padding()
+                    Menu("MAPS"){}
+                        .padding()
+                    Menu("SNAPCHAT"){}
+                        .padding()
+                    Menu("SPOTIFY"){}
+                        .padding()
+                    Menu("YOUTUBE"){}
+                        .padding()
+                    Menu("CAMERA"){}
+                        .padding()
+                }
+                .font(.title)
+                
+                .ignoresSafeArea()
+                
+
             }
             .frame(maxWidth: showMenu ? 250 : 0, maxHeight: .infinity)
-            .opacity(showMenu ? 1.0 : 0.0)
+                        .opacity(showMenu ? 1.0 : 0.0)
+            
             
             VStack{
                 //Content View
@@ -147,6 +178,7 @@ struct MenuTwo: View {
                     VStack{
                         
                         Text("Menu Test")
+                            .opacity(showMenu ? 0.5 : 1.0)
                     }
                 }
             }

@@ -97,18 +97,17 @@ struct LabelsInList: View{
                 Divider()
                 Text("Create and Create")
             }
-            //Notice not aligned. Use "Label" instead of "HStack"
+            //Notice not aligned. Use "Label" instead of HStack
         }
         
         
         List{
-            Text("Rules of Coding")
+            Text("Post ID | Location")
                 .font(.largeTitle)
             Label{
                 Text("Build Community")
             } icon: {
-                Image(systemName: "person.3")
-                    .foregroundColor(.primary)
+                Text("H-209")
             }
             Label{
                 Text("Create and Create")
@@ -225,7 +224,7 @@ struct DifLabel: View {
 
 struct TheLabel_Previews: PreviewProvider {
     static var previews: some View {
-//        LabelsInList()
+        LabelsInList()
         ScrollView{
             VStack{
                 
