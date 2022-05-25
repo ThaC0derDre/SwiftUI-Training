@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct MarkDown: View {
+    let markdownText: LocalizedStringKey = "* This is **bold** text, this is *italic* text, and this is ***bold, italic*** text."
+    
     var body: some View {
         VStack(spacing: 20) {
             //Add bold with **
-            Text("**Login**")
+            Text("Be **Bold**")
             //Italics with *
             Text("*Make sure to provide your email address*")
             //Together now!
@@ -24,6 +26,10 @@ struct MarkDown: View {
             Text("~~A strikethrough example~~")
             Text("~A strikethrough example~")
             Text("`Monospaced works too`")
+            
+            // For properties, mark as LocalizedStringKey
+            Text(markdownText)
+            
         }
     }
 }
