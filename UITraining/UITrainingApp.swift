@@ -11,7 +11,8 @@ import SwiftUI
 struct UITrainingApp: App {
     var body: some Scene {
         WindowGroup {
-            MenuOne()
+            MatchGeometryEffect()
+//            MenuOne()
 //            TheLabel()
 //            CustomLabels()
 //            DifLabel()()
